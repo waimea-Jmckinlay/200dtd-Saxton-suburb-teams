@@ -77,7 +77,7 @@ suitable for the end users
 
 
 
-## Accessibility Implications:
+##  Accessibility Implications:
 this means the end user is able to access the information they are looking for
 or curtain users can use a key to edit the website to add and update information
 

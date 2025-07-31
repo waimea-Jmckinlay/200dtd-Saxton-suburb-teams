@@ -12,11 +12,13 @@ Develop a prototype that simulates the key functionality of the system, then tes
 
 ## Initial Database Design
 
-Replace this text with notes regarding the DB design.
+This is the initial design for the database linking players to teams 
+and games to teams games have the data for when and where the game is and what teams will be playing there the players table holds the players names and the 
+teams table stores the team name and details about the team 
 
-![SCREENSHOT OF DB DESIGN](screenshots/example.png)
+![Alt text](image.png) 
 
-
+talk to end user, show and talk about any updates made 
 ---
 
 ## UI 'Flow'
@@ -25,7 +27,7 @@ The first stage of prototyping was to explore how the UI might 'flow' between st
 
 This Figma demo shows the initial design for the UI 'flow':
 
-**FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT**
+https://www.figma.com/proto/lEVdKTzeh7p7tJCxz3VMmh/Untitled?node-id=0-1&t=M8XfPYCUfrEiLnxW-1
 
 ### Testing
 
