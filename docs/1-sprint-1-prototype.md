@@ -16,7 +16,7 @@ This is the initial design for the database linking players to teams
 and games to teams games have the data for when and where the game is and what teams will be playing there the players table holds the players names and the 
 teams table stores the team name and details about the team 
 
-![Alt text](image.png) 
+![Alt text](image-1.png)
 
 talk to end user, show and talk about any updates made 
 ---
@@ -27,7 +27,7 @@ The first stage of prototyping was to explore how the UI might 'flow' between st
 
 This Figma demo shows the initial design for the UI 'flow':
 
-https://www.figma.com/proto/lEVdKTzeh7p7tJCxz3VMmh/Untitled?node-id=0-1&t=M8XfPYCUfrEiLnxW-1
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="500" height="450" src="https://embed.figma.com/proto/lEVdKTzeh7p7tJCxz3VMmh/Untitled?node-id=1-30&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A30&embed-host=share" allowfullscreen></iframe>
 
 ### Testing
 
@@ -65,7 +65,7 @@ Replace this text with notes any improvements you made as a result of the testin
 
 ## Refined UI Prototype
 
-Having established the layout of the UI screens, the prototype was refined visually, in terms of colour, fonts, etc.
+Having established the layout of the UI screens, the prototype was refined visually, in terms of color, fonts, etc.
 
 This Figma demo shows the UI with refinements applied:
 
