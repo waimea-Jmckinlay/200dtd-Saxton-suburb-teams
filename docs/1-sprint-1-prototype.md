@@ -18,7 +18,7 @@ teams table stores the team name and details about the team
 
 ![Alt text](image-1.png)
 
-talk to end user, show and talk about any updates made 
+
 ---
 
 ## UI 'Flow'
@@ -31,13 +31,18 @@ This Figma demo shows the initial design for the UI 'flow':
 
 ### Testing
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+while testing my end user pointed out if there are lots of teams 
+which there will be that it may get harder for them to find the team they are looking for also they didn't like the though of someone else knowing where they kid is going be though out the day the end user found on the page where we add a team that im using space the doesn't need to be used and i also came to a relize saion that my website would be best on phone and would requre a good font size 
+to read off of a phone 
 
 ### Changes / Improvements
+I redesign the first page so there was a sech bar with a drop down menu 
+and I found a way to free up some more space on the edit or add team page 
+and i removed the ablity for people to see which team the kids are in unlest
+their an admin by having it only show on a page that only they can get to.
 
-Replace this text with notes any improvements you made as a result of the testing.
 
-*IMPROVED FIGMA FLOW - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="500" height="450" src="https://embed.figma.com/proto/49a3NlBuCJ3h9JossPFUm8/Untitled?node-id=1-2&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&embed-host=share" allowfullscreen></iframe>
 
 
 ---
