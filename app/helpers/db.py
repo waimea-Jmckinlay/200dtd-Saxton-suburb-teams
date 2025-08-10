@@ -14,6 +14,9 @@ load_dotenv()
 TURSO_URL = getenv("TURSO_URL")
 TURSO_KEY = getenv("TURSO_KEY")
 
+# Load local DB file path
+LOCAL_DB_PATH = getenv("LOCAL_DB_PATH")
+
 
 #-----------------------------------------------------------
 # Connect to the Turso DB and return the connection
@@ -24,8 +27,13 @@ def connect_db():
     client = None
 
     try:
-        # Create a connection to the Turso DB
-        client = create_client_sync(url=TURSO_URL, auth_token=TURSO_KEY)
+        # Create a connection to the database (Turso cloud or local SQLite)
+        if LOCAL_DB_PATH:
+            # Use local SQLite file
+            client = create_client_sync(url=LOCAL_DB_PATH)
+        else:
+            # Use Turso cloud database
+            client = create_client_sync(url=TURSO_URL, auth_token=TURSO_KEY)
 
         # Clear any past queries
         app.dbSQL = None
@@ -37,7 +45,7 @@ def connect_db():
         def logged_execute(sql, *params, **kwargs):
             # Store for later error handling
             app.dbSQL = sql
-            app.dbParams = params[0] if params else None
+            app.dbParams = params[0]
 
             # Log and run the query
             log_db_request(app, sql, params)
@@ -55,5 +63,7 @@ def connect_db():
     finally:
         if client is not None:
             client.close()
+
+
 
 
