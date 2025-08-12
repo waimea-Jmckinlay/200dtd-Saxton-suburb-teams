@@ -19,6 +19,11 @@ teams table stores the team name and details about the team
 ![Alt text](image-1.png)
 
 
+## Database Design
+I have desided that 2 database would work better
+![Alt text](image-2.png)
+
+
 ---
 
 ## UI 'Flow'
