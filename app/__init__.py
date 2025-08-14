@@ -44,11 +44,11 @@ def about():
 #-----------------------------------------------------------
 # Things page route - Show all the things, and new thing form
 #-----------------------------------------------------------
-@app.get("/things/")
+@app.get("/footballgames/")
 def show_all_things():
     with connect_db() as client:
         # Get all the things from the DB
-        sql = "SELECT id, name FROM things ORDER BY name ASC"
+        sql = "SELECT id, location, time, date FROM footballgames ORDER BY date,time ASC"
         params = []
         result = client.execute(sql, params)
         things = result.rows
@@ -64,7 +64,7 @@ def show_all_things():
 def show_one_thing(id):
     with connect_db() as client:
         # Get the thing details from the DB
-        sql = "SELECT id, name, price FROM things WHERE id=?"
+        sql = "SELECT Id, locations, date, time FROM footballgames WHERE id=?"
         params = [id]
         result = client.execute(sql, params)
 
@@ -109,7 +109,7 @@ def add_a_thing():
 def delete_a_thing(id):
     with connect_db() as client:
         # Delete the thing from the DB
-        sql = "DELETE FROM things WHERE id=?"
+        sql = "DELETE FROM footballgames WHERE id=?"
         params = [id]
         client.execute(sql, params)
 
