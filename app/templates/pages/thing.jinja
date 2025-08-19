@@ -22,10 +22,10 @@
     <article>
 
         <header>
-            <h3>{{ teams.team-names }}</h3>
+            <h3>{{ team.id }}</h3>
         </header>
 
-        <p>Price: <strong>${{ thing.price }}</strong></p>
+        <p>location: <strong>${{ footballgames.location }}</strong></p>
 
         <footer>
             <a href="/delete/{{ footballgames.id }}" onclick="return confirm('Really delete?');">Delete</a>

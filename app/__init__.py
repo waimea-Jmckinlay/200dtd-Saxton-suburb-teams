@@ -31,32 +31,26 @@ init_datetime(app)  # Handle UTC dates in timestamps
 @app.get("/")
 def index():
     return render_template("pages/home.jinja")
-
-
 #-----------------------------------------------------------
 # About page route
 #-----------------------------------------------------------
 @app.get("/about/")
 def about():
     return render_template("pages/about.jinja")
-
-
 #-----------------------------------------------------------
 # Things page route - Show all the things, and new thing form
 #-----------------------------------------------------------
-@app.get("/footballgames/")
+@app.get("/things/")
 def show_all_things():
     with connect_db() as client:
         # Get all the things from the DB
-        sql = "SELECT id, location, time, date FROM footballgames ORDER BY date,time ASC"
+        sql = "SELECT * FROM footballgames ORDER BY date,time ASC"
         params = []
         result = client.execute(sql, params)
         things = result.rows
 
         # And show them on the page
         return render_template("pages/things.jinja", things=things)
-
-
 #-----------------------------------------------------------
 # Thing page route - Show details of a single thing
 #-----------------------------------------------------------
@@ -64,7 +58,7 @@ def show_all_things():
 def show_one_thing(id):
     with connect_db() as client:
         # Get the thing details from the DB
-        sql = "SELECT Id, locations, date, time FROM footballgames WHERE id=?"
+        sql = "SELECT * FROM footballgames WHERE id=?"
         params = [id]
         result = client.execute(sql, params)
 
@@ -77,31 +71,29 @@ def show_one_thing(id):
         else:
             # No, so show error
             return not_found_error()
-
-
 #-----------------------------------------------------------
 # Route for adding a thing, using data posted from a form
 #-----------------------------------------------------------
 @app.post("/add")
 def add_a_thing():
     # Get the data from the form
-    name  = request.form.get("name")
-    price = request.form.get("price")
-
+    location  = request.form.get("location")
+    date = request.form.get("date")
+    time = request.form.get("time")
+    team1= request.form.get("team1")
+    team2 = request.form.get("team2")
     # Sanitise the text inputs
-    name = html.escape(name)
+    location = html.escape(location)
 
     with connect_db() as client:
         # Add the thing to the DB
-        sql = "INSERT INTO things (name, price) VALUES (?, ?)"
-        params = [name, price]
+        sql = "INSERT INTO footballgames (*) VALUES (?, ?)"
+        params = [location,date,time,team1,team2]
         client.execute(sql, params)
 
         # Go back to the home page
-        flash(f"Thing '{name}' added", "success")
+        flash(f" game '{location,date,time,team2}'added", "success")
         return redirect("/things")
-
-
 #-----------------------------------------------------------
 # Route for deleting a thing, Id given in the route
 #-----------------------------------------------------------
@@ -116,5 +108,3 @@ def delete_a_thing(id):
         # Go back to the home page
         flash("Thing deleted", "success")
         return redirect("/things")
-
-

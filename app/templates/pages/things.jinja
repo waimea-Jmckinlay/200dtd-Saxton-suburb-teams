@@ -22,11 +22,11 @@
     <article>
 
         <ul>
-            {% for thing in things %}
+            {% for location in footballgames %}
 
                 <li>
-                    <a href="/thing/{{ thing.id }}">
-                        {{ thing.name }}
+                    <a href="/database/{{ footballgames.id }}">
+                        {{ footballgames.location }}
                     </a>
                 </li>
 
@@ -42,26 +42,45 @@
 
     <article>
 
-        <h3>Add a New Thing...</h3>
+        <h3>Create a new row</h3>
 
         <form action="/add" method="POST">
 
             <input
                 type="text"
-                name="name"
-                placeholder="Name of new thing"
+                name="location"
+                placeholder="Name of new location"
                 required
             >
 
             <input
+                type="date"
+                name="date"
+                placeholder="date"
+                required
+            >
+              <input
+                type="time"
+                name="time"
+                placeholder="time"
+                required
+            >
+             <input
                 type="number"
-                name="price"
-                min="0"
-                placeholder="Price in dollars"
+                name="team1"
+                min="1"
+                placeholder="first team"
+                required
+            >
+              <input
+                type="number"
+                name="team2"
+                min="1"
+                placeholder="second team"
                 required
             >
 
-            <button>Add the Thing</button>
+            <button>Add the row</button>
 
         </form>
 
