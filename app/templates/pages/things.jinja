@@ -22,17 +22,17 @@
     <article>
 
         <ul>
-            {% for location in footballgames %}
+            {% for Id in footballgames %}
 
                 <li>
                     <a href="/database/{{ footballgames.id }}">
-                        {{ footballgames.location }}
+                        {{ footballgames.locations }}
                     </a>
                 </li>
 
             {% else %}
 
-                <p>None!</p>
+                <p> None! </p>
 
             {% endfor %}
         </ul>

@@ -44,7 +44,7 @@ def about():
 def show_all_things():
     with connect_db() as client:
         # Get all the things from the DB
-        sql = "SELECT * FROM footballgames ORDER BY date,time ASC"
+        sql = "SELECT Id,location,date,time,team1,team2 FROM footballgames ORDER BY date,time ASC"
         params = []
         result = client.execute(sql, params)
         things = result.rows
@@ -58,7 +58,7 @@ def show_all_things():
 def show_one_thing(id):
     with connect_db() as client:
         # Get the thing details from the DB
-        sql = "SELECT * FROM footballgames WHERE id=?"
+        sql = "SELECT Id,location,date,time,team1,team2 FROM footballgames WHERE id=?"
         params = [id]
         result = client.execute(sql, params)
 
@@ -87,7 +87,7 @@ def add_a_thing():
 
     with connect_db() as client:
         # Add the thing to the DB
-        sql = "INSERT INTO footballgames (*) VALUES (?, ?)"
+        sql = "INSERT INTO footballgames (Id, location,date,time,team1,team2) VALUES (?, ?)"
         params = [location,date,time,team1,team2]
         client.execute(sql, params)
 
