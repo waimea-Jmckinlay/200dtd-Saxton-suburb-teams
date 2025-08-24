@@ -25,7 +25,7 @@
             {% for Id in footballgames %}
 
                 <li>
-                    <a href="/database/{{ footballgames.id }}">
+                    <a href="/database/{{ games.Id }}">
                         {{ footballgames.locations }}
                     </a>
                 </li>
@@ -66,14 +66,14 @@
                 required
             >
              <input
-                type="number"
+                type="bigint"
                 name="team1"
                 min="1"
                 placeholder="first team"
                 required
             >
               <input
-                type="number"
+                type="bigint"
                 name="team2"
                 min="1"
                 placeholder="second team"
