@@ -30,47 +30,62 @@ init_datetime(app)  # Handle UTC dates in timestamps
 #-----------------------------------------------------------
 @app.get("/")
 def index():
-    return render_template("pages/home.jinja")
-#-----------------------------------------------------------
-# About page route
-#-----------------------------------------------------------
-@app.get("/about/")
-def about():
-    return render_template("pages/about.jinja")
-#-----------------------------------------------------------
-# Things page route - Show all the things, and new thing form
-#-----------------------------------------------------------
-@app.get("/things/")
-def show_all_things():
     with connect_db() as client:
         # Get all the things from the DB
-        sql = "SELECT location,date,time,team1,team2 FROM games ORDER BY date,time ASC"
+        sql = "SELECT id, name FROM teams ORDER BY name ASC"
         params = []
         result = client.execute(sql, params)
-        things = result.rows
+        teams = result.rows
 
         # And show them on the page
-        return render_template("pages/things.jinja", things=things)
+        return render_template("pages/home.jinja", teams=teams)
+    
+#-----------------------------------------------------------
+#admin page route
+#-----------------------------------------------------------
+@app.get("/admin")
+def show_admin():
+    with connect_db() as client:
+        # Get all the things from the DB
+        sql = "SELECT id, name FROM teams ORDER BY name ASC"
+        params = []
+        result = client.execute(sql, params)
+        teams = result.rows
+
+        # And show them on the page
+
+        return render_template("pages/admin.jinja", teams=teams)
+
+
 #-----------------------------------------------------------
 # Thing page route - Show details of a single thing
 #-----------------------------------------------------------
-@app.get("/thing/<int:id>")
+@app.get("/team/<int:id>")
 def show_one_thing(id):
     with connect_db() as client:
         # Get the thing details from the DB
-        sql = "SELECT location,date,time,team1,team2 FROM games WHERE Id=?"
+        sql = "SELECT name, details, players FROM teams WHERE id=?"
         params = [id]
         result = client.execute(sql, params)
 
         # Did we get a result?
         if result.rows:
             # yes, so show it on the page
-            thing = result.rows[0]
-            return render_template("pages/thing.jinja", thing=thing)
+            team = result.rows[0]
+
+            # Get the thing details from the DB
+            sql = "SELECT location, date, time FROM games WHERE team1=? OR team2=?"
+            params = [id, id]
+            result = client.execute(sql, params)
+            games = result.rows
+
+            return render_template("pages/team.jinja", team=team, games=games)
 
         else:
             # No, so show error
             return not_found_error()
+        
+
 #-----------------------------------------------------------
 # Route for adding a thing, using data posted from a form
 #-----------------------------------------------------------
@@ -91,13 +106,13 @@ def add_a_thing():
 
     with connect_db() as client:
         # Add the thing to the DB
-        sql = "INSERT INTO games ( location,date,time,team1,team2) VALUES (?, ?)"
+        sql = "INSERT INTO games ( location,date,time,team1,team2) VALUES (?, ?, ?, ? ,?)"
         params = [location,date,time,team1,team2]
         client.execute(sql, params)
 
         # Go back to the home page
         flash(f" game '{location,date,time,team2}'added", "success")
-        return redirect("/things")
+        return redirect("/edit")
 #-----------------------------------------------------------
 # Route for deleting a thing, Id given in the route
 #-----------------------------------------------------------
@@ -111,4 +126,4 @@ def delete_a_thing(id):
 
         # Go back to the home page
         flash("Thing deleted", "success")
-        return redirect("/things")
+        return redirect("/edit")

@@ -1,8 +1,7 @@
 {#=====================================================
-  Home page
-  - Hero style greeting banner
-  - List of teams passed in as 'teams' array
-  - Form for looking at a games 
+  Admin control page (DEMO)
+  lets the admin pick to add a team or to edit an allready exsisting team 
+  or to go back 
 =====================================================#}
 
 {% extends 'pages/base.jinja' %}
@@ -10,14 +9,13 @@
 
 {% block title %}
 
-    Saxton Football
+   FOOTBALL ADMIN
 
 {% endblock %}
 
 
 {% block content %}
-
-    <h1>Select a Team...</h1>
+ <h1>edit a team</h1>
 
 
     <article>
@@ -34,11 +32,12 @@
             {% else %}
 
                 <p> None! </p>
-
-            {% endfor %}
+    {%endfor%}
         </ul>
 
-    </article>
-<a role="button" href="/admin">admin only </a>
+
+
+<a role="button" href="/">Back </a>
+
 {% endblock %}
 

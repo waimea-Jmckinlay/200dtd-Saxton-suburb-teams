@@ -1,0 +1,55 @@
+{#=====================================================
+  Thing page
+  - Shows details of a single thing
+  - Has a delete link to remove it
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    Flask Demo - Single Thing
+
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>Team Info</h1>
+
+
+    <article>
+
+        <header>
+            <h3>{{ team.name }}</h3>
+
+            <p>{{ team.details }}</p>
+
+            <p>{{ team.players }}</p>
+        </header>
+
+        <ul>
+            {% for game in games %}
+
+                <li>
+                    {{ game.location }}
+                    {{ game.date }}
+                    {{ game.time }}
+                </li>
+
+            {% else %}
+
+                <p> None! </p>
+
+            {% endfor %}
+        </ul>
+
+
+    </article>
+
+
+    <a role="button" href="/">Back </a>
+
+{% endblock %}
+
