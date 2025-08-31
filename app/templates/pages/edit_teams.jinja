@@ -21,13 +21,21 @@
 
     <article>
 
+        <header>
+            <h3>{{ team.name }}</h3>
+
+            <p>{{ team.details }}</p>
+
+            <p>{{ team.players }}</p>
+        </header>
+
         <ul>
-            {% for Id in footballgames %}
+            {% for game in games %}
 
                 <li>
-                    <a href="/database/{{ games.Id }}">
-                        {{ footballgames.locations }}
-                    </a>
+                    {{ game.location }}
+                    {{ game.date }}
+                    {{ game.time }}
                 </li>
 
             {% else %}
@@ -37,6 +45,8 @@
             {% endfor %}
         </ul>
 
+
+    
     </article>
 
 
@@ -65,18 +75,11 @@
                 placeholder="time"
                 required
             >
-             <input
-                type="bigint"
-                name="team1"
-                min="1"
-                placeholder="first team"
-                required
-            >
+            
               <input
-                type="bigint"
+                type="text"
                 name="team2"
-                min="1"
-                placeholder="second team"
+                placeholder="other team id"
                 required
             >
 
@@ -85,6 +88,6 @@
         </form>
 
     </article>
-
+<a role="button" href="/admin">Back </a>
 {% endblock %}
 
