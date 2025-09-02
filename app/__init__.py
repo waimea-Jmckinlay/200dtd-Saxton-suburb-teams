@@ -41,7 +41,7 @@ def index():
         return render_template("pages/football.jinja", teams=teams)
     
 #-----------------------------------------------------------
-#admin page route lets the admin selcleta team to edit or add a hole new team
+#admin page route lets the admin seclect team to edit or add a hole new team
 #-----------------------------------------------------------
 @app.get("/admin")
 def show_admin():
@@ -88,7 +88,7 @@ def show_one_team(id):
 #-----------------------------------------------------------
 # edit_teams page route - Show details of a single team and lets the user edit it's infomation
 #-----------------------------------------------------------
-@app.get("/edit_teams/<int:id>")
+@app.get("/team-admin/<int:id>")
 def show_team_form(id):
     with connect_db() as client:
         # Get the team details from the DB
@@ -107,16 +107,36 @@ def show_team_form(id):
             result = client.execute(sql, params)
             games = result.rows
 
-            return render_template("pages/edit_teams.jinja", team=team, games=games)
+
+            # Get the team details from the DB
+            sql = "SELECT id, name, details, players FROM teams WHERE id != ?"
+            params = [id]
+            result = client.execute(sql, params)
+            other_teams = result.rows
+
+            # Get the team details from the DB
+            sql = "SELECT id, name, details, players FROM teams WHERE id = ?"
+            params = [id]
+            result = client.execute(sql, params)
+            same_team= result.rows
+
+            return render_template("pages/team-admin.jinja", 
+                                   team=team, 
+                                   games=games,
+                                   other_teams=other_teams,
+                                   same_team=same_team 
+            )
+                                   
+            
 
         else:
             # No, so show error
             return not_found_error()
         
 #-----------------------------------------------------------
-# Route for adding a thing, using data posted from a form
+# Route for adding a game, using data posted from a form
 #-----------------------------------------------------------
-@app.post("/add")
+@app.post("/game")
 def add_a_game():
     # Get the data from the form
     location  = request.form.get("location")
@@ -140,9 +160,33 @@ def add_a_game():
         # Go back to the home page
         flash(f" game '{location,date,time,team2}'added", "success")
         return redirect("/admin")
+    #-----------------------------------------------------------
+# Route for adding a team, using data posted from a form
+#-----------------------------------------------------------
+@app.post("/team")
+def add_a_team():
+    # Get the data from the form
+    name  = request.form.get("name")
+    details = request.form.get("details")
+    players = request.form.get("players")
+
+    # Sanitise the text inputs
+    name = html.escape(name)
+    details = html.escape(details)
+    players = html.escape(players)
+
+    with connect_db() as client:
+        # Add the row to the DB
+        sql = "INSERT INTO teams (name,details,players) VALUES (?, ?, ?)"
+        params = [name,details,players]
+        client.execute(sql, params)
+
+        # Go back to the home page
+        flash(f" game '{name,details,players}'added", "success")
+        return redirect("/admin")
     
 #-----------------------------------------------------------
-# Route for deleting a thing, Id given in the route
+# Route for deleting a game, Id given in the route
 #-----------------------------------------------------------
 @app.get("/delete/<int:id>")
 def delete_a_game(id):
@@ -154,4 +198,4 @@ def delete_a_game(id):
 
         # Go back to the home page
         flash("Thing deleted", "success")
-        return redirect("/edit")
+        return redirect("/admin")

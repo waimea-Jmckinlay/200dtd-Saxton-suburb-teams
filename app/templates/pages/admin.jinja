@@ -24,7 +24,7 @@
             {% for team in teams %}
 
                 <li>
-                    <a href="/edit_teams/{{ team.id }}">
+                    <a href="/team-admin/{{ team.id }}">
                         {{ team.name }}
                     </a>
                 </li>
@@ -34,7 +34,35 @@
                 <p> None! </p>
     {%endfor%}
         </ul>
+</article>
 
+<h1>add a team</h1>
+
+<article>
+ <form action="/team" method="POST">
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Team name"
+                required
+            >
+
+            <input
+                type="details"
+                name="details"
+                placeholder="Team details"
+              
+            >
+              <input
+                type="text"
+                name="players"
+                placeholder="Team players"
+                required
+            >
+
+            <button>Add the team</button>
+</article>
 
 
 <a role="button" href="/">Back </a>

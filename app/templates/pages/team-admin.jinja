@@ -36,6 +36,7 @@
                     {{ game.location }}
                     {{ game.date }}
                     {{ game.time }}
+                    {{ game.other_team }}
                 </li>
 
             {% else %}
@@ -52,36 +53,51 @@
 
     <article>
 
-        <h3>Create a new row</h3>
+        <h3>Add a Game</h3>
 
-        <form action="/add" method="POST">
+        <form action="/game" method="POST">
 
             <input
                 type="text"
                 name="location"
-                placeholder="Name of new location"
+                placeholder="Game location"
                 required
             >
 
             <input
                 type="date"
                 name="date"
-                placeholder="date"
+                placeholder="Game date"
                 required
             >
-              <input
+            <input
                 type="time"
                 name="time"
-                placeholder="time"
+                placeholder="Game time"
                 required
             >
-            
-              <input
-                type="text"
+            <select
+                name="team1"
+                required
+            >
+                {% for same_team in same_teams %}
+
+                    <option value="{{ same_team.id }}">{{ same_team.name }}</option>
+
+                {% endfor %}
+             </select>
+            <select
                 name="team2"
-                placeholder="other team id"
                 required
             >
+                {% for other_team in other_teams %}
+
+                    <option value="{{ other_team.id }}">{{ other_team.name }}</option>
+
+                {% endfor %}
+
+            </select>
+
 
             <button>Add the row</button>
 
