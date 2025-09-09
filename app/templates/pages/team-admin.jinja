@@ -27,6 +27,8 @@
             <p>{{ team.details }}</p>
 
             <p>{{ team.players }}</p>
+
+            <p> {{ other_teams }}</p>
         </header>
 
         <ul>
@@ -36,7 +38,7 @@
                     {{ game.location }}
                     {{ game.date }}
                     {{ game.time }}
-                    {{ game.other_team }}
+                    {{ other_teams }}
                 </li>
 
             {% else %}
@@ -76,16 +78,13 @@
                 placeholder="Game time"
                 required
             >
-            <select
+
+            <input
+                type="hidden"
                 name="team1"
-                required
+                value="{{ team.id }}"
             >
-                {% for same_team in same_teams %}
 
-                    <option value="{{ same_team.id }}">{{ same_team.name }}</option>
-
-                {% endfor %}
-             </select>
             <select
                 name="team2"
                 required

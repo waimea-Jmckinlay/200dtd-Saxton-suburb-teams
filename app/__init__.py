@@ -64,7 +64,7 @@ def show_admin():
 def show_one_team(id):
     with connect_db() as client:
         # Get the team details from the DB
-        sql = "SELECT name, details, players FROM teams WHERE id=?"
+        sql = "SELECT id, name, details players FROM teams WHERE id=?"
         params = [id]
         result = client.execute(sql, params)
 
@@ -74,10 +74,13 @@ def show_one_team(id):
             team = result.rows[0]
 
             # Get the game details from the DB
-            sql = "SELECT location, date, time FROM games WHERE team1=? OR team2=?"
+            sql = "SELECT id, location, date, time FROM games WHERE team1=? OR team2=?"
             params = [id, id]
             result = client.execute(sql, params)
             games = result.rows
+
+
+            
 
             return render_template("pages/team.jinja", team=team, games=games)
 
@@ -92,7 +95,7 @@ def show_one_team(id):
 def show_team_form(id):
     with connect_db() as client:
         # Get the team details from the DB
-        sql = "SELECT name, details, players FROM teams WHERE id=?"
+        sql = "SELECT id, name, details, players FROM teams WHERE id=?"
         params = [id]
         result = client.execute(sql, params)
 
@@ -102,7 +105,7 @@ def show_team_form(id):
             team = result.rows[0]
 
             # Get the game details from the DB
-            sql = "SELECT location, date, time FROM games WHERE team1=? OR team2=?"
+            sql = "SELECT id, location, date, time FROM games WHERE team1=? OR team2=?"
             params = [id, id]
             result = client.execute(sql, params)
             games = result.rows
@@ -114,17 +117,10 @@ def show_team_form(id):
             result = client.execute(sql, params)
             other_teams = result.rows
 
-            # Get the team details from the DB
-            sql = "SELECT id, name, details, players FROM teams WHERE id = ?"
-            params = [id]
-            result = client.execute(sql, params)
-            same_team= result.rows
-
             return render_template("pages/team-admin.jinja", 
                                    team=team, 
                                    games=games,
-                                   other_teams=other_teams,
-                                   same_team=same_team 
+                                   other_teams=other_teams 
             )
                                    
             
@@ -142,7 +138,7 @@ def add_a_game():
     location  = request.form.get("location")
     date = request.form.get("date")
     time = request.form.get("time")
-    team1= request.form.get("team1")
+    team1 = request.form.get("team1")
     team2 = request.form.get("team2")
     # Sanitise the text inputs
     location = html.escape(location)
