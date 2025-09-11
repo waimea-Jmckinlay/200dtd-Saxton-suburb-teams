@@ -105,14 +105,45 @@ def show_team_form(id):
             team = result.rows[0]
 
             # Get the game details from the DB
-            sql = "SELECT id, location, date, time FROM games WHERE team1=? OR team2=?"
-            params = [id, id]
+            sql = """
+                SELECT id, location, date, time 
+                FROM games 
+                (SELECT 
+                    CASE games.team1=? 
+                    THEN teams.name FROM teams WHERE id=games.team2 
+                    ELSE teams.name FROM teams WHERE id=games.team1) AS opponent
+                WHERE team1=? OR team2=?
+            """
+
+            # TODO... Fix the above
+
+#             SELECT
+#     g.game_id, -- Assuming you have a unique game ID column
+#     t1.name AS team1_name,
+#     t2.name AS team2_name,
+#     CASE
+#         WHEN g.team1_id = @MyTeamID THEN t2.name -- If my team is team1, opponent is team2
+#         ELSE t1.name -- If my team is team2, opponent is team1
+#     END AS opponent_name,
+#     CASE
+#         WHEN g.team1_id = @MyTeamID THEN g.team2_id
+#         ELSE g.team1_id
+#     END AS opponent_id
+# FROM
+#     games g
+# JOIN
+#     teams t1 ON g.team1_id = t1.id
+# JOIN
+#     teams t2 ON g.team2_id = t2.id
+# WHERE
+#     g.team1_id = @MyTeamID OR g.team2_id = @MyTeamID;
+            params = [id, id, id]
             result = client.execute(sql, params)
             games = result.rows
 
 
             # Get the team details from the DB
-            sql = "SELECT id, name, details, players FROM teams WHERE id != ?"
+            sql = "SELECT id, name, details FROM teams WHERE id != ?"
             params = [id]
             result = client.execute(sql, params)
             other_teams = result.rows
