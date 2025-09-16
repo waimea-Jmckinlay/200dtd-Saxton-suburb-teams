@@ -64,7 +64,7 @@ def show_admin():
 def show_one_team(id):
     with connect_db() as client:
         # Get the team details from the DB
-        sql = "SELECT id, name, details players FROM teams WHERE id=?"
+        sql = "SELECT id, name, details, players FROM teams WHERE id=?"
         params = [id]
         result = client.execute(sql, params)
 
@@ -74,8 +74,26 @@ def show_one_team(id):
             team = result.rows[0]
 
             # Get the game details from the DB
-            sql = "SELECT id, location, date, time FROM games WHERE team1=? OR team2=?"
-            params = [id, id]
+            sql =  """
+                SELECT 
+                    games.id,
+                    games.location,
+                    games.date,
+                    games.time,
+                    CASE
+                        WHEN games.team1 = ? 
+                        THEN t2.name
+                        ELSE t1.name
+                    END AS opponent
+                
+                FROM games 
+                JOIN teams AS t1 ON games.team1 = t1.id
+                JOIN teams AS t2 ON games.team2 = t2.id
+                
+                WHERE games.team1 = ? or games.team2 = ?
+                
+            """
+            params = [id, id, id]
             result = client.execute(sql, params)
             games = result.rows
 
@@ -89,7 +107,7 @@ def show_one_team(id):
             return not_found_error()
         
 #-----------------------------------------------------------
-# edit_teams page route - Show details of a single team and lets the user edit it's infomation
+# team-admin page route - Show details of a single team and lets the user edit it's infomation
 #-----------------------------------------------------------
 @app.get("/team-admin/<int:id>")
 def show_team_form(id):
@@ -106,37 +124,24 @@ def show_team_form(id):
 
             # Get the game details from the DB
             sql = """
-                SELECT id, location, date, time 
+                SELECT 
+                    games.id,
+                    games.location,
+                    games.date,
+                    games.time,
+                    CASE
+                        WHEN games.team1 = ? 
+                        THEN t2.name
+                        ELSE t1.name
+                    END AS opponent
+                
                 FROM games 
-                (SELECT 
-                    CASE games.team1=? 
-                    THEN teams.name FROM teams WHERE id=games.team2 
-                    ELSE teams.name FROM teams WHERE id=games.team1) AS opponent
-                WHERE team1=? OR team2=?
+                JOIN teams AS t1 ON games.team1 = t1.id
+                JOIN teams AS t2 ON games.team2 = t2.id
+                
+                WHERE games.team1 = ? or games.team2 = ?
+                
             """
-
-            # TODO... Fix the above
-
-#             SELECT
-#     g.game_id, -- Assuming you have a unique game ID column
-#     t1.name AS team1_name,
-#     t2.name AS team2_name,
-#     CASE
-#         WHEN g.team1_id = @MyTeamID THEN t2.name -- If my team is team1, opponent is team2
-#         ELSE t1.name -- If my team is team2, opponent is team1
-#     END AS opponent_name,
-#     CASE
-#         WHEN g.team1_id = @MyTeamID THEN g.team2_id
-#         ELSE g.team1_id
-#     END AS opponent_id
-# FROM
-#     games g
-# JOIN
-#     teams t1 ON g.team1_id = t1.id
-# JOIN
-#     teams t2 ON g.team2_id = t2.id
-# WHERE
-#     g.team1_id = @MyTeamID OR g.team2_id = @MyTeamID;
             params = [id, id, id]
             result = client.execute(sql, params)
             games = result.rows

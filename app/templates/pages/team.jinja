@@ -22,34 +22,44 @@
     <article>
 
         <header>
-            <h3>{{ team.name }}</h3>
 
+            <h1>{{ team.name }}</h1>
+              
             <p>{{ team.details }}</p>
 
+            <h3>players</h3>
             <p>{{ team.players }}</p>
-
-             <p>{{ other_teams}}</p>
-
-            
+           
         </header>
 
-        <ul>
-            {% for game in games %}
+        <h3>Games</h3>
 
-                <li>
-                    {{ game.location }}
-                    {{ game.date }}
-                    {{ game.time }}
-                </li>
+        <table>
+            <thead>
+                <tr>
+                    <th>Opponent</th>
+                    <th>When</th>
+                    <th>Where</th>
+                </tr>
+            </thead>
 
-            {% else %}
+            <tbody>
+                {% for game in games %}
 
-                <p> None! </p>
+                    <tr>
+                        <td>{{ game.opponent }}</td>
+                        <td>{{ game.date }} at {{ game.time }}</td>
+                        <td>{{ game.location }}</td>
+                    </tr>
 
-            {% endfor %}
-        </ul>
+                {% else %}
 
+                    <p> None! </p>
 
+                {% endfor %}
+            </tbody>
+        </table>
+        
     </article>
 
 
