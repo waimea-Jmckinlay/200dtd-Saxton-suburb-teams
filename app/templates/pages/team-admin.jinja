@@ -108,6 +108,15 @@
             <button>Add the row</button>
 
         </form>
+        <form action="/delete/<int:id>" method="POST">
+
+       <input
+        type = button 
+        name = delete
+        placeholder="delete"
+        value = "{{ team.id }}"
+          >
+        </form>
 
     </article>
 <a role="button" href="/admin">Back </a>

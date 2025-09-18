@@ -229,5 +229,5 @@ def delete_a_game(id):
         client.execute(sql, params)
 
         # Go back to the home page
-        flash("Thing deleted", "success")
+        flash("game deleted", "success")
         return redirect("/admin")
