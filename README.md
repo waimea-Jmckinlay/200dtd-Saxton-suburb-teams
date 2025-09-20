@@ -1,18 +1,18 @@
-# PROJECT NAME HERE
+# Saxton-suburb-teams-football
 
-by YOUR NAME HERE
+by Jayden.Mckinlay
 
 
 ---
 
 ## Project Description
 
-Replace this text with your project description and list the key features below
+the point of this project is to help orginze the football teams and football games that take place that involves the Saxton teams
 
-- Feature 1 here
-- Feature 2 here
-- Feature 3 here
-- Feature 4 here
+- pertants should be able to use this websight on their phone
+- only personals with a admin key can deleat and add teams while the others can only vew them
+- the websight is to orginze the games by the teams playing in them
+- there should be no dead ends in the websight there allways be a way to return to the previous page
 - Feature 5 here
 
 
@@ -57,11 +57,11 @@ The project demonstrates a number of **advanced database techniques**:
 - Setting validation rules for data entry
 
 The project demonstrates a number of **advanced digital media (web) techniques**:
-- Creating or customising scripts, code or presets
+- Creating or customising code 
 - Using a combination of steps to manipulate or enhance elements
 - Using a third-party library
 - Using composite effects
 
-** EDIT THESE LISTS ABOVE TO MATCH YOUR PROJECT**
+
 
 
