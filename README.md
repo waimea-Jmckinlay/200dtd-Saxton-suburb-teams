@@ -13,7 +13,7 @@ the point of this project is to help orginze the football teams and football gam
 - only personals with a admin key can deleat and add teams while the others can only vew them
 - the websight is to orginze the games by the teams playing in them
 - there should be no dead ends in the websight there allways be a way to return to the previous page
-- Feature 5 here
+- the websight should be easy to use and understand for the user
 
 
 ---
