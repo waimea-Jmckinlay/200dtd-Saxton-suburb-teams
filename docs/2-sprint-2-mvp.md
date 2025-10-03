@@ -20,6 +20,8 @@ Replace this text with notes regarding the DB schema.
 ## Initial Implementation
 
 The key functionality of the web app was implemented:
+the user can look up what teams are playing what games and the admin can 
+add games or teams on the webpage or deleat them 
 
 **PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE SYSTEM HERE**
 

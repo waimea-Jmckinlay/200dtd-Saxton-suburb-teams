@@ -55,17 +55,18 @@ The next stage of prototyping was to develop the layout for each screen of the U
 
 This Figma demo shows the initial layout design for the UI:
 
-*FIGMA PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="500" height="450" src="https://embed.figma.com/proto/49a3NlBuCJ3h9JossPFUm8/Untitled?scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&node-id=1-9&embed-host=share" allowfullscreen></iframe>
 
 ### Testing
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+As testing I keeped changing things make the ui flow better for what I wanted I mostly just 
+change the size and placement of things till it worked
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+the ui was kind of ugly and was just made out of a bunch a low quaty boxes and text so I made it look better and made it so it works on phone as well 
 
-*FIGMA IMPROVED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="500" height="450" src="https://embed.figma.com/proto/Z8Q5cm8K8hLonovTUr1R7b/Untitled?node-id=1-71&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2&embed-host=share" allowfullscreen></iframe>
 
 
 ---
@@ -76,22 +77,22 @@ Having established the layout of the UI screens, the prototype was refined visua
 
 This Figma demo shows the UI with refinements applied:
 
-*FIGMA REFINED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/9TtjVESK3EH00N4nyNlE7y/Untitled--Copy---Copy-?node-id=1-9&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2&embed-host=share" allowfullscreen></iframe>
 
 ### Testing
 
-Replace this text with notes about what you did to test the UI flow and the outcome of the testing.
+I keeped fliping thoughout the pages makeing changes to colur and front untill i was happy with it
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+because the webpage was mostly a darker colur I found that some of my text had to be white so the uesr could read it 
 
-*FIGMA IMPROVED REFINED PROTOTYPE - PLACE THE FIGMA EMBED CODE HERE - MAKE SURE IT IS SET SO THAT EVERYONE CAN ACCESS IT*
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="500" height="450" src="https://embed.figma.com/proto/WFCK1XubxPxWe4KIDEi7FY/Untitled--Copy-?node-id=1-2&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2&embed-host=share" allowfullscreen></iframe>
 
 
 ---
 
 ## Sprint Review
 
-Replace this text with a statement about how the sprint has moved the project forward - key success point, any things that didn't go so well, etc.
+we have a good blue print for the websight which will help us make the websight. 
 
