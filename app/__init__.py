@@ -122,6 +122,9 @@ def show_team_form(id):
             # yes, so show it on the page
             team = result.rows[0]
 
+            # What is date today?
+            today = ?????
+
             # Get the game details from the DB
             sql = """
                 SELECT 
@@ -139,10 +142,11 @@ def show_team_form(id):
                 JOIN teams AS t1 ON games.team1 = t1.id
                 JOIN teams AS t2 ON games.team2 = t2.id
                 
-                WHERE games.team1 = ? or games.team2 = ?
+                WHERE (games.team1 = ? OR games.team2 = ?)
+                AND games.date >= ?
                 
             """
-            params = [id, id, id]
+            params = [id, id, id, today]
             result = client.execute(sql, params)
             games = result.rows
 
@@ -220,14 +224,15 @@ def add_a_team():
 #-----------------------------------------------------------
 # Route for deleting a game, Id given in the route
 #-----------------------------------------------------------
-@app.get("/delete/<int:id>")
+@app.post("/delete/<int:id>")
 def delete_a_game(id):
     with connect_db() as client:
         # Delete the row from the DB
         sql = "DELETE FROM games WHERE id=?"
         params = [id]
-        client.execute(sql, params)
+        result = client.execute(sql, params)
+        games = result.row
 
         # Go back to the home page
         flash("game deleted", "success")
-        return redirect("/admin")
+        return redirect("/delete/<int:id>", games=games )

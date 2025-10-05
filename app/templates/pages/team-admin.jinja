@@ -37,6 +37,7 @@
                     <th>Opponent</th>
                     <th>When</th>
                     <th>Where</th>
+                    <th> </th>
                 </tr>
             </thead>
 
@@ -47,6 +48,10 @@
                         <td>{{ game.opponent }}</td>
                         <td>{{ game.date }} at {{ game.time }}</td>
                         <td>{{ game.location }}</td>
+                        <td>
+                        <a role="button" herf="/delete/<int:id>" method="POST"> delete
+                         </a>
+                         </td>
                     </tr>
 
                 {% else %}
@@ -61,7 +66,7 @@
 
 
     <article>
-
+        
         <h3>Add a Game</h3>
 
         <form action="/game" method="POST">
@@ -108,15 +113,7 @@
             <button>Add the row</button>
 
         </form>
-        <form action="/delete/<int:id>" method="POST">
-
-       <input
-        type = button 
-        name = delete
-        placeholder="delete"
-        value = "{{ team.id }}"
-          >
-        </form>
+    
 
     </article>
 <a role="button" href="/admin">Back </a>
