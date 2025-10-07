@@ -12,7 +12,8 @@ from app.helpers.session import init_session
 from app.helpers.db      import connect_db
 from app.helpers.errors  import init_error, not_found_error
 from app.helpers.logging import init_logging
-from app.helpers.time    import init_datetime, utc_timestamp, utc_timestamp_now
+from app.helpers.dates   import init_datetime, utc_datetime_str, utc_date_str, utc_time_str
+from datetime            import date
 
 
 # Create the app
@@ -25,6 +26,16 @@ init_error(app)     # Handle errors and exceptions
 init_datetime(app)  # Handle UTC dates in timestamps
 
 
+
+#------------------------------------------------------------
+# Lets the admin sign in and lets them go to the next page
+#-------------------------------------------------------------
+@app.post("/sign-in")
+def sign_in():
+ 
+
+
+ return render_template("pages/admin.jinja",)
 #-----------------------------------------------------------
 # Home page route
 #-----------------------------------------------------------
@@ -41,9 +52,9 @@ def index():
         return render_template("pages/football.jinja", teams=teams)
     
 #-----------------------------------------------------------
-#admin page route lets the admin seclect team to edit or add a hole new team
+#admin page route lets the admin sign in page to sign in
 #-----------------------------------------------------------
-@app.get("/admin")
+@app.get("/admin-sign-in")
 def show_admin():
     with connect_db() as client:
         # Get all the teams from the DB
@@ -54,7 +65,7 @@ def show_admin():
 
         # And show them on the page
 
-        return render_template("pages/admin.jinja", teams=teams)
+        return render_template("pages/admin-sign-in.jinja", teams=teams)
 
 
 #-----------------------------------------------------------
@@ -72,6 +83,10 @@ def show_one_team(id):
         if result.rows:
             # yes, so show it on the page
             team = result.rows[0]
+
+             # Get the current local date in ISO format
+            today = date.today().strftime('%Y-%m-%d')
+
 
             # Get the game details from the DB
             sql =  """
@@ -93,7 +108,7 @@ def show_one_team(id):
                 WHERE games.team1 = ? or games.team2 = ?
                 
             """
-            params = [id, id, id]
+            params = [id, id, today]
             result = client.execute(sql, params)
             games = result.rows
 
@@ -122,8 +137,9 @@ def show_team_form(id):
             # yes, so show it on the page
             team = result.rows[0]
 
-            # What is date today?
-            today = ?????
+            
+            # Get the current local date in ISO format
+            today = date.today().strftime('%Y-%m-%d')
 
             # Get the game details from the DB
             sql = """
@@ -221,18 +237,4 @@ def add_a_team():
         flash(f" game '{name,details,players}'added", "success")
         return redirect("/admin")
     
-#-----------------------------------------------------------
-# Route for deleting a game, Id given in the route
-#-----------------------------------------------------------
-@app.post("/delete/<int:id>")
-def delete_a_game(id):
-    with connect_db() as client:
-        # Delete the row from the DB
-        sql = "DELETE FROM games WHERE id=?"
-        params = [id]
-        result = client.execute(sql, params)
-        games = result.row
 
-        # Go back to the home page
-        flash("game deleted", "success")
-        return redirect("/delete/<int:id>", games=games )

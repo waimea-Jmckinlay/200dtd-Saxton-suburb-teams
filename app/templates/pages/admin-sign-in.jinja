@@ -1,0 +1,35 @@
+{#=====================================================
+  Home page
+  - Hero style greeting banner
+  - List of teams passed in as 'teams' array
+  - Form for looking at a games 
+=====================================================#}
+
+{% extends 'pages/base.jinja' %}
+
+
+{% block title %}
+
+    Saxton Football
+
+{% endblock %}
+
+
+{% block content %}
+
+<form action="/sign-in" method="POST">
+            <input
+                type="text"
+                name="password"
+                placeholder="password"
+                required
+            >
+
+</form>
+
+
+
+
+   
+{% endblock %}
+

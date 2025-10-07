@@ -46,12 +46,8 @@
 
                     <tr>
                         <td>{{ game.opponent }}</td>
-                        <td>{{ game.date }} at {{ game.time }}</td>
+                        <td>{{ game.date | nicedate }} at {{ game.time | nicetime }}</td>
                         <td>{{ game.location }}</td>
-                        <td>
-                        <a role="button" herf="/delete/<int:id>" method="POST"> delete
-                         </a>
-                         </td>
                     </tr>
 
                 {% else %}
