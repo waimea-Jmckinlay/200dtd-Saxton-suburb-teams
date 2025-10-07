@@ -36,6 +36,15 @@
             <ul>
                 <li><strong><a href="/">Saxton Football</a></strong></li>
             </ul>
+
+            <ul>
+                {% if session['admin'] %}
+                    <li><a role="button" href="/admin">Admin</a></li>
+                    <li><a role="button" href="/sign-out">Logout</a></li>
+                {% else %}
+                    <li><a role="button" href="/sign-in">Admin Login</a></li>
+                {% endif %}
+            </ul>
         </nav>
     </header>
 

@@ -5,7 +5,7 @@
 # BRIEF DESCRIPTION OF YOUR PROJECT HERE
 #===========================================================
 
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash, redirect, session
 import html
 
 from app.helpers.session import init_session
@@ -27,15 +27,6 @@ init_datetime(app)  # Handle UTC dates in timestamps
 
 
 
-#------------------------------------------------------------
-# Lets the admin sign in and lets them go to the next page
-#-------------------------------------------------------------
-@app.post("/sign-in")
-def sign_in():
- 
-
-
- return render_template("pages/admin.jinja",)
 #-----------------------------------------------------------
 # Home page route
 #-----------------------------------------------------------
@@ -51,22 +42,57 @@ def index():
         # And show them on the page
         return render_template("pages/football.jinja", teams=teams)
     
+#------------------------------------------------------------
+# makes the form for the admin to sing in with 
+#-------------------------------------------------------------
+@app.get("/sign-in")
+def sign_in_form():
+    return render_template("pages/admin-sign-in.jinja",)
+
+    
+#------------------------------------------------------------
+# Lets the admin sign in and lets them go to the admin page
+#-------------------------------------------------------------
+@app.post("/sign-in")
+def sign_in():
+    password = request.form.get("password")
+
+    if password == "hello":
+        session['admin'] = True
+        return redirect("/admin")
+    else:
+        session['admin'] = False
+        flash("Incorrect password")
+        return redirect("/sign-in")
+
+    
+#------------------------------------------------------------
+# a button the sign out the admin
+#-------------------------------------------------------------
+@app.get("/sign-out")
+def sign_out():
+    session['admin'] = False
+    return redirect("/")
+
+    
 #-----------------------------------------------------------
-#admin page route lets the admin sign in page to sign in
+#if admin = false the user can't enter this page other wise they go back to home page
 #-----------------------------------------------------------
-@app.get("/admin-sign-in")
+@app.get("/admin")
 def show_admin():
-    with connect_db() as client:
-        # Get all the teams from the DB
-        sql = "SELECT id, name FROM teams ORDER BY name ASC"
-        params = []
-        result = client.execute(sql, params)
-        teams = result.rows
+    if session['admin']:
+        with connect_db() as client:
+            # Get all the teams from the DB
+            sql = "SELECT id, name FROM teams ORDER BY name ASC"
+            params = []
+            result = client.execute(sql, params)
+            teams = result.rows
 
-        # And show them on the page
+            # And show them on the page
 
-        return render_template("pages/admin-sign-in.jinja", teams=teams)
+            return render_template("pages/admin.jinja", teams=teams)
 
+    return redirect("/")
 
 #-----------------------------------------------------------
 # team page route - Show details of a single team
@@ -84,12 +110,11 @@ def show_one_team(id):
             # yes, so show it on the page
             team = result.rows[0]
 
-             # Get the current local date in ISO format
+          # Get the current local date in ISO format
             today = date.today().strftime('%Y-%m-%d')
 
-
             # Get the game details from the DB
-            sql =  """
+            sql = """
                 SELECT 
                     games.id,
                     games.location,
@@ -105,10 +130,11 @@ def show_one_team(id):
                 JOIN teams AS t1 ON games.team1 = t1.id
                 JOIN teams AS t2 ON games.team2 = t2.id
                 
-                WHERE games.team1 = ? or games.team2 = ?
+                WHERE (games.team1 = ? OR games.team2 = ?)
+                AND games.date >= ?
                 
             """
-            params = [id, id, today]
+            params = [id, id, id, today]
             result = client.execute(sql, params)
             games = result.rows
 
@@ -178,9 +204,7 @@ def show_team_form(id):
                                    games=games,
                                    other_teams=other_teams 
             )
-                                   
-            
-
+                                
         else:
             # No, so show error
             return not_found_error()

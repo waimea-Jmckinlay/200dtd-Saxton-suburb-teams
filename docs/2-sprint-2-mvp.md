@@ -21,7 +21,7 @@ Replace this text with notes regarding the DB schema.
 
 The key functionality of the web app was implemented:
 the user can look up what teams are playing what games and the admin can 
-add games or teams on the webpage or deleat them 
+add games or teams on the webpage and pass games are stored in the data base but not seen in any of the pages
 
 **PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE SYSTEM HERE**
 
@@ -30,24 +30,26 @@ add games or teams on the webpage or deleat them
 
 ## Testing FEATURE NAME HERE
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+im testing where there the websight only shows games that are happening today or later
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+![Alt text](image-4.png)
+![Alt text](image-3.png)
+seam like it doesn't work on the non admin page 
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+i found i miner error in my code that letted this happened but i fixed it 
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+![Alt text](image-5.png)
 
 
 ---
 
 ## Testing FEATURE NAME HERE
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+i was going around making a video of everything working and turns out theres somthing now working
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+![Alt text](20251007-0209-00.7105270.gif)
 
 ### Changes / Improvements
 
