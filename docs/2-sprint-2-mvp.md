@@ -47,65 +47,66 @@ i found i miner error in my code that letted this happened but i fixed it
 
 ## Testing FEATURE NAME HERE
 
-i was going around making a video of everything working and turns out theres somthing now working
+I was going around making a video of everything working and turns out theres something now working the code breaks when i try add a game
+
 
 ![Alt text](20251007-0209-00.7105270.gif)
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+the date and time that was being input was not the same as it was needing to be storded as 
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
-
-
----
-
-## Testing FEATURE NAME HERE
-
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
-
-### Changes / Improvements
-
-Replace this text with notes any improvements you made as a result of the testing.
-
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+<video src="20251019-2140-29.1374303.mp4" controls title="Title"></video>
 
 
 ---
 
 ## Testing FEATURE NAME HERE
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+testing the admin feacher where others can't use admin stuff
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+<video src="20251019-2119-38.8173391.mp4" controls title="Title"></video>
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+i've change the password so no one knows what is and that is's harder to guess
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+![Alt text](20251019-2144-48.0312049.gif)
 
 
 ---
 
 ## Testing FEATURE NAME HERE
 
-Replace this text with notes about what you are testing, how you tested it, and the outcome of the testing
+testing that non admin can only open the teams pages to look at the teams
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE TESTING HERE**
+<video src="20251019-2123-31.3987008.mp4" controls title="Title"></video>
 
 ### Changes / Improvements
 
-Replace this text with notes any improvements you made as a result of the testing.
+i will not change any of this untill i try make it look nice with css
 
-**PLACE SCREENSHOTS AND/OR ANIMATED GIFS OF THE IMPROVED SYSTEM HERE**
+
+
+
+---
+
+## Testing FEATURE NAME HERE
+
+testing that games that are set to before todays date are not showned but are still in the data base
+
+<video src="20251019-2147-30.2854021.mp4" controls title="Title"></video>
+
+### Changes / Improvements
+
+looks good to me no need to make any changes just yet
+
+
 
 
 ---
 
 ## Sprint Review
 
-Replace this text with a statement about how the sprint has moved the project forward - key success point, any things that didn't go so well, etc.
+this project now just need some cleaning up and some nice colors
 

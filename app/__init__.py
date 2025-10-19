@@ -57,7 +57,7 @@ def sign_in_form():
 def sign_in():
     password = request.form.get("password")
 
-    if password == "hello":
+    if password == "0987654321":
         session['admin'] = True
         return redirect("/admin")
     else:
@@ -222,10 +222,9 @@ def add_a_game():
     team2 = request.form.get("team2")
     # Sanitise the text inputs
     location = html.escape(location)
-    date = html.escape(date)
-    time = html.escape(time)
-    team1 = html.escape(team1)
-    team2 = html.escape(team2)
+    # add on seconds for the DB if not present already
+    if len(time) == 5:
+        time = time + ":00"
 
     with connect_db() as client:
         # Add the row to the DB
