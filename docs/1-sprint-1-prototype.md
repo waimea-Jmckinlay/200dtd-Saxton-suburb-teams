@@ -16,12 +16,12 @@ This is the initial design for the database linking players to teams
 and games to teams games have the data for when and where the game is and what teams will be playing there the players table holds the players names and the 
 teams table stores the team name and details about the team 
 
-![Alt text](image-1.png)
+![Alt text](screenshots/image-1.png)
 
 
 ## Database Design
 I have desided that 2 database would work better
-![Alt text](image-2.png)
+![Alt text](screenshots/image-2.png)
 
 
 ---

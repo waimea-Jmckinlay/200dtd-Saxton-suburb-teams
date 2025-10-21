@@ -10,9 +10,11 @@ Develop the system until it is fully featured, with a refined UI and it satisfie
 
 ## Updated Database Schema (if it changed)
 
-Replace this text with notes regarding the DB schema.
+so this is what I was trying to make with the colors
+ but some things turned out better that the plain
+ so the website does look better than this image
 
-![SCREENSHOT OF DB SCHEMA](screenshots/example.png)
+![Alt text](screenshots/image.png)
 
 
 ---

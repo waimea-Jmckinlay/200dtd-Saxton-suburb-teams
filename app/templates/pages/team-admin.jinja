@@ -17,20 +17,23 @@
 {% block content %}
 
 
+    <h1>{{ team.name }}</h1>
+
+    <h3>details</h3>
+    <p>{{ team.details }}</p>
+
+    <h3>Players</h3>
+
+    <p>{{ team.players }}</p>
+
     <article>
 
         <header>
 
-            <h1>{{ team.name }}</h1>
-
-            <p>{{ team.details }}</p>
-
-            <h3>Players</h3>
-            
-            <p>{{ team.players }}</p>
+            <h2>Games</h3>
         </header>
 
-        <h3>Games</h3>
+
 
         <table>
             <thead>
@@ -38,7 +41,6 @@
                     <th>Opponent</th>
                     <th>When</th>
                     <th>Where</th>
-                    <th> </th>
                 </tr>
             </thead>
 
@@ -63,8 +65,10 @@
 
 
     <article>
-        
-        <h3>Add a Game</h3>
+        <header>
+            
+            <h2>Add a Game</h3>
+        </header>
 
         <form action="/game" method="POST">
 

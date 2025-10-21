@@ -3,19 +3,6 @@
 =====================================================*/
 
 
-/* ABOUT PAGE -------------------------------------------- */
-
-#tech-stack {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-}
-
-#tech-stack article {
-    flex: 1;
-}
-
-
 /* MESSAGES -------------------------------------------- */
 
 #messages ul {
@@ -39,24 +26,39 @@ article{background-color: rgb(74, 91, 207);}
 
 a{
    
- color:white
+ color:white;
+
+}
+/* For general text selection highlight */
+
+html {
+    background-color: rgb(57, 59, 155);
 }
 
- body{
+body{
     background-color: rgb(57, 59, 155);
     height: 1300px;
 }
+
 h1{
+
+    background-color:rgb(57, 59, 155);
+   
     color:white;
 
 }
 header{
     color:white;
-    background-color: blue;
+    
+}
+main{
+    background-color: rgb(57, 59, 155);
 }
 
-
-
-
-
+h3{
+    color:white
+}
+p{ 
+    color:white
+}
 
