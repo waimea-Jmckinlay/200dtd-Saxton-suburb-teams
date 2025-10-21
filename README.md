@@ -21,7 +21,7 @@ the point of this project is to help orginze the football teams and football gam
 ## Project Links
 
 - [GitHub repo for the project](https://...)
-- [document tation](https://...)
+- [documentation](https://waimea-jmckinlay.github.io/200dtd-Saxton-suburb-teams/)
 - [Live web app](https://...)
 
 
